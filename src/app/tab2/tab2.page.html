@@ -1,9 +1,48 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Two
+  <ion-toolbar color="primary">
+    <ion-title class="toolbar-title">
+      DocS
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+    <ion-item-group >
+        <ion-item-divider>
+          <ion-label>RegEx</ion-label>
+        </ion-item-divider>
+      
+          <ion-item  detail lines="full" *ngFor="let reg of mainArray" (click)="getFullInfo(reg.paragraph)">
+              <ion-note class="note-size" slot="start" color="primary">{{ reg.symbol }}</ion-note>
+              <ion-label class="snippet">{{ reg.snippet }}</ion-label >
+            </ion-item>
+     
+       
+      </ion-item-group>
+
+      <ion-item-group>
+          <ion-item-divider>
+            <ion-label>Methods</ion-label>
+          </ion-item-divider>
+        
+          <ion-item (click)="testClick()" detail lines="full" *ngFor="let method of regMethods">
+              <ion-note class="note-size" slot="start" color="primary">\</ion-note>
+              <ion-label>Note (Start)</ion-label>
+            </ion-item>
+          
+        </ion-item-group>
+
+        <ion-item-group>
+            <ion-item-divider>
+              <ion-label>Flags</ion-label>
+            </ion-item-divider>
+          
+            <ion-item (click)="testClick()" detail lines="full" *ngFor="let flag of flags">
+                <ion-note class="note-size" slot="start" color="primary">\</ion-note>
+                <ion-label>Note (Start)</ion-label>
+              </ion-item>
+            
+          </ion-item-group>
+ 
+ 
+</ion-content>
