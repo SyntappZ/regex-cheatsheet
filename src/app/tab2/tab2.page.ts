@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
   public mainArray = [ { symbol: '\\',
-  snippet: ' indicates that the next character is special',
+  snippet: 'next character is special',
   paragraph:
    '\n    Matches according to the following rules:\n     \n     A backslash that precedes a non-special character indicates that the next character is special and is not to be interpreted literally. For example, a \'b\' without a preceding \'\\\' generally matches lowercase \'b\'s wherever they occur — the character will be interpreted literally. But a sequence of \'\\b\' doesn\'t match any character; it denotes a word boundary.\n     \n     A backslash that precedes a special character indicates that the next character is not special and should be interpreted literally. See "Escaping" below for details.\n\n    If you\'re using the RegExp constructor with a string, don\'t forget that backslash is an escape character in string literals, and so to put a backslash in the pattern, you need to escape it in the string literal. /[a-z]\\s/i and new RegExp("[a-z]\\\\s", "i") create the same regular expression: an expression that searches for any letter in the range A-Z followed by a whitespace character (\\s, see below). To include a literal backslash in an expression created via new RegExp with a string literal, you need to escape it at both the string literal level and the regular expression level: /[a-z]:\\\\/i and new RegExp("[a-z]:\\\\\\\\","i") create the same expression, which would match a string like "C:\\".\n   ' },
   { symbol: '^',
@@ -20,17 +20,17 @@ export class Tab2Page {
   paragraph:
    '\n    Matches end of input. If the multiline flag is set to true, also matches immediately before a line break character.\n\n    For example, /t$/ does not match the \'t\' in "eater", but does match it in "eat".\n   ' },
   { symbol: '*',
-  snippet: 'preceding expression 0 or more times.',
+  snippet: 'matches 0 or more times.',
 
   paragraph:
    '\n    Matches the preceding expression 0 or more times. Equivalent to {0,}.\n\n    For example, /bo*/ matches \'boooo\' in "A ghost booooed" and \'b\' in "A bird warbled" but nothing in "A goat grunted".\n   ' },
   { symbol: '+',
-  snippet: 'preceding expression 1 or more times.',
+  snippet: 'matches 1 or more times.',
 
   paragraph:
    '\n    Matches the preceding expression 1 or more times. Equivalent to {1,}.\n\n    For example, /a+/ matches the \'a\' in "candy" and all the a\'s in "caaaaaaandy", but nothing in "cndy".\n   ' },
   { symbol: '?',
-  snippet: 'preceding expression 0 or 1 time.',
+  snippet: 'matches 0 or 1 times.',
 
   paragraph:
    'Matches the preceding expression 0 or 1 time. Equivalent to {0,1}.\n    \n    For example, /e?le?/ matches the \'el\' in "angel" and the \'le\' in "angle" and also the \'l\' in "oslo".\n    \n    If used immediately after any of the quantifiers *, +, ?, or {}, makes the quantifier non-greedy (matching the fewest possible characters), as opposed to the default, which is greedy (matching as many characters as possible). For example, applying /\\d+/ to "123abc" matches "123". But applying /\\d+?/ to that same string matches only the "1".\n    \n    Also used in lookahead assertions, as described in the x(?=y) and x(?!y) entries of this table.' },
@@ -161,7 +161,7 @@ export class Tab2Page {
   paragraph:
    '\n    Matches any alphanumeric character including the underscore. Equivalent to [A-Za-z0-9_].\n\n    For example, /\\w/ matches \'a\' in "apple," \'5\' in "$5.28," and \'3\' in "3D."\n   ' },
   { symbol: '\\W',
-  snippet: 'Matches any non-word character.',
+  snippet: 'non-word character.',
 
   paragraph:
    '\n    Matches any non-word character. Equivalent to [^A-Za-z0-9_].\n\n    For example, /\\W/ or /[^A-Za-z0-9_]/ matches \'%\' in "50%."\n   ' },
@@ -176,17 +176,17 @@ export class Tab2Page {
   paragraph:
    'Matches a NULL (U+0000) character. Do not follow this with another digit, because \\0<digits> is an octal escape sequence. Instead use \\x00.' },
   { symbol: '\\xhh',
-  snippet: 'Matches the character with the code hh',
+  snippet: 'character with the code hh',
 
   paragraph:
    'Matches the character with the code hh (two hexadecimal digits)' },
   { symbol: '\\uhhhh',
-  snippet: 'Matches the character with the code hhhh',
+  snippet: 'character with the code hhhh',
 
   paragraph:
-   'Matches the character with the code hhhh (four hexadecimal digits).' },
+   'character with the code hhhh (four hexadecimal digits).' },
   { symbol: '\\u{hhhh}',
-  snippet: 'Matches the character with the Unicode value hhhh',
+  snippet: 'character with the Unicode value hhhh',
 
   paragraph:
    '(only when u flag is set) Matches the character with the Unicode value hhhh (hexadecimal digits).' },

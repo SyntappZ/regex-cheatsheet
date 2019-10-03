@@ -12,10 +12,13 @@
           <ion-label>RegEx</ion-label>
         </ion-item-divider>
       
-          <ion-item  detail lines="full" *ngFor="let reg of mainArray" (click)="getFullInfo(reg.paragraph)">
-              <ion-note class="note-size" slot="start" color="primary">{{ reg.symbol }}</ion-note>
-              <ion-label class="snippet">{{ reg.snippet }}</ion-label >
-            </ion-item>
+          <div class="reg-wrap" *ngFor="let reg of mainArray" (click)="getFullInfo(reg.paragraph)">
+              <div class="symbol" >{{ reg.symbol }}</div>
+              <div class="snippet">{{ reg.snippet }}</div>
+              <div class="details">
+                <!-- icon -->
+              </div>
+          </div>
      
        
       </ion-item-group>
