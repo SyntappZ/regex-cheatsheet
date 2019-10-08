@@ -25,14 +25,20 @@ $black: '#333';
      align-items:center;
      font-size:13px;
      padding-left:5px;
-     border-bottom:solid 1px $primary;
+     border-bottom:solid 1px rgb(189, 189, 189);
  }
  .details {
      width:10%;
      display:flex;
      justify-content: center;
      align-items:center;
-     border-bottom:solid 1px $primary;
+     border-bottom:solid 1px rgb(189, 189, 189);
+
+
+    .red-arrow {
+        font-size:23px;
+    }
+
  }
 
 }

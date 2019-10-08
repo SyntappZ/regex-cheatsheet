@@ -1,0 +1,26 @@
+
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-title class="title">{{ title }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">
+        <ion-icon class="exit" name="close-circle"></ion-icon>
+        
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <div class="body">
+      <div class="top">
+          <div class="symbol-wrap">
+              <h1>{{ symbol }}</h1>
+            </div>
+      </div>
+      <div class="paragraph-wrap">
+        <p style="white-space: pre-line">{{ paragraph }}</p>
+      </div>
+  </div>
+ 
+</ion-content>

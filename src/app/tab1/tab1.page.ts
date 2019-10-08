@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
   
-  
+  reg = '/^[a-z0-9_-]{3,16}$/'
   
 
   constructor() {
