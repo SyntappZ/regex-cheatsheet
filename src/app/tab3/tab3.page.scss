@@ -1,1 +1,51 @@
+$primary: var(--ion-color-primary);
 
+.wrap {
+  margin-top: 10px;
+  border: 2px solid $primary;
+  border-radius: 4px;
+  padding: 5px 0;
+
+  .reg-input {
+    width: 100%;
+    border: none;
+    letter-spacing: 1px;
+    color: $primary;
+    font-weight: 500;
+    font-size: 20px;
+    box-sizing: border-box;
+
+    &:focus {
+      outline: none;
+    }
+  }
+  .edge {
+    color: rgb(196, 196, 196);
+    font-size: 30px;
+    padding: 0 5px;
+  }
+}
+
+.flag-input {
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+.quick-access {
+  overflow-x: auto;
+  white-space: nowrap;
+
+  .symbol {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    background: $primary;
+    border-radius: 4px;
+    color: white;
+    margin: 10px;
+    font-size: 22px;
+  }
+}

@@ -6,4 +6,57 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="9">
+        <ion-row class="wrap">
+          <ion-col class="edge" size="1">/</ion-col>
+          <ion-col size="10">
+            <input autocapitalize="none" class="reg-input" type="text" />
+          </ion-col>
+          <ion-col class="edge" size="1">/</ion-col>
+        </ion-row>
+      </ion-col>
+
+      <ion-col size="3">
+        <ion-item>
+          <ion-label position="floating">flags</ion-label>
+          <ion-input class="flag-input"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <!-- quick access -->
+    <!-- <ion-row>
+      <ion-col>
+       
+      </ion-col>
+    </ion-row> -->
+
+ 
+    <div class="quick-access">
+        <div class="symbol" *ngFor="let symbol of symbols" (click)="symbolClicked(symbol)">
+          {{ symbol }}
+        </div>
+      </div>
+
+    <!-- testing string -->
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Testing String</ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="9">
+        ion-col
+      </ion-col>
+
+      <ion-col size="3">
+        ion-col
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
