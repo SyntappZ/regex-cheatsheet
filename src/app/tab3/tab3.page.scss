@@ -49,3 +49,51 @@ $primary: var(--ion-color-primary);
     font-size: 22px;
   }
 }
+
+.output-area {
+  width: 100%;
+  min-height: 35vh;
+  border-radius: 4px;
+  margin-top: 5vh;
+  border: solid 1px rgb(214, 214, 214);
+  padding: 10px;
+  box-sizing: border-box;
+  letter-spacing: 2px;
+  font-family: 'Coda', cursive;
+}
+
+.string-input {
+  width: 100%;
+  border: 2px solid rgb(163, 163, 163);
+  border-radius: 4px;
+  outline: none;
+  padding: 12px 5px;
+  letter-spacing: 1px;
+
+  &:focus {
+    border-color: $primary;
+  }
+}
+.matched {
+  width: 100%;
+  text-align: center;
+  padding-top: 4px;
+  box-sizing: border-box;
+  font-size: 30px;
+  color: $primary;
+  font-family: 'Coda', cursive;
+}
+
+::placeholder {
+  color: rgb(199, 199, 199);
+}
+
+.arrow {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  .i {
+    color: $primary;
+    font-size:20px;
+  }
+}

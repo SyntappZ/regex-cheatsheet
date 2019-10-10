@@ -13,7 +13,12 @@
         <ion-row class="wrap">
           <ion-col class="edge" size="1">/</ion-col>
           <ion-col size="10">
-            <input autocapitalize="none" class="reg-input" type="text" />
+            <input
+              autocapitalize="none"
+              class="reg-input"
+              type="text"
+              [(ngModel)]="regInput"
+            />
           </ion-col>
           <ion-col class="edge" size="1">/</ion-col>
         </ion-row>
@@ -22,40 +27,50 @@
       <ion-col size="3">
         <ion-item>
           <ion-label position="floating">flags</ion-label>
-          <ion-input class="flag-input"></ion-input>
+          <ion-input class="flag-input" [(ngModel)]="flagInput"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
-    <!-- quick access -->
-    <!-- <ion-row>
-      <ion-col>
-       
-      </ion-col>
-    </ion-row> -->
 
- 
-    <div class="quick-access">
-        <div class="symbol" *ngFor="let symbol of symbols" (click)="symbolClicked(symbol)">
-          {{ symbol }}
+    <!-- quick access -->
+    <ion-row>
+      <ion-col size="11">
+        <div class="quick-access">
+          <div
+            class="symbol"
+            *ngFor="let symbol of symbols"
+            (click)="symbolClicked(symbol)"
+          >
+            {{ symbol }}
+          </div>
         </div>
-      </div>
+      </ion-col>
+      <ion-col size="1" class="arrow">
+        <ion-icon class="i" name="arrow-dropright"></ion-icon>
+      </ion-col>
+    </ion-row>
 
     <!-- testing string -->
+
     <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-label position="floating">Testing String</ion-label>
-          <ion-input></ion-input>
-        </ion-item>
+      <ion-col size="9">
+        <input
+          autocapitalize="none"
+          placeholder="Testing String"
+          type="text"
+          class="string-input"
+          [(ngModel)]="stringInput"
+        />
+      </ion-col>
+      <ion-col size="3">
+        <div class="matched" (click)="test()">0</div>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col size="9">
-        ion-col
-      </ion-col>
-
-      <ion-col size="3">
-        ion-col
+      <ion-col>
+        <div class="output-area">
+          <h3>{{ stringInput }}</h3>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
