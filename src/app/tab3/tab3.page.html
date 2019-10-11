@@ -14,6 +14,7 @@
           <ion-col class="edge" size="1">/</ion-col>
           <ion-col size="10">
             <input
+              (keyup)="checkRegex()"
               autocapitalize="none"
               class="reg-input"
               type="text"
@@ -27,7 +28,11 @@
       <ion-col size="3">
         <ion-item>
           <ion-label position="floating">flags</ion-label>
-          <ion-input class="flag-input" [(ngModel)]="flagInput"></ion-input>
+          <ion-input
+            class="flag-input"
+            [(ngModel)]="flagInput"
+            (keyup)="checkRegex()"
+          ></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -55,6 +60,7 @@
     <ion-row>
       <ion-col size="9">
         <input
+          (keyup)="stringTyped()"
           autocapitalize="none"
           placeholder="Testing String"
           type="text"
@@ -69,7 +75,7 @@
     <ion-row>
       <ion-col>
         <div class="output-area">
-          <h3>{{ stringInput }}</h3>
+          <span class="char" *ngFor="let char of chars">{{ char }}</span>
         </div>
       </ion-col>
     </ion-row>
