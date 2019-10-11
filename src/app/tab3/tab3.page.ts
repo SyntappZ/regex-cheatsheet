@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 
+
 @Component({
   selector: "app-tab3",
   templateUrl: "tab3.page.html",
@@ -30,7 +31,7 @@ export class Tab3Page {
   flagInput: string;
   match: any;
   chars = [];
-  regexResults = [];
+  
   indexArray = [];
   outputArray = document.getElementsByClassName("char");
 
@@ -40,67 +41,59 @@ export class Tab3Page {
     } else {
       this.regInput = this.regInput + symbol;
     }
-    this.checkRegex();
+   this.checkRegex()
   }
 
-  regexMatchTester(str: string, reg: string, flag: string) {
-    this.regexResults = [];
-    const test = new RegExp(reg, flag);
-    const isRegex = test.test(str)
-    if(flag !== undefined && flag.length > 0) {
-      console.log('flag reg')
-    }else{
-      if(str !== undefined && str.length > 0) {
-        this.regexResults.push({
-          result: str.match(test),
-          index: str.match(test).index
-        });
-       }
-    }
   
-  
+  test() {
     
-    
-     
-  
   }
-   test() {
-    
-   }
+  
+  globalMatchTest() {
+
+  }
 
   stringTyped() {
     this.chars = [...this.stringInput];
-   // console.log(this.regInput)
     if(this.regInput !== undefined) {
-      this.checkRegex()
+    this.checkRegex()
     }
-    
   }
 
   checkRegex() {
     
-   
-      this.indexArray = []
-      this.regexMatchTester(this.stringInput, this.regInput, this.flagInput);
-      console.log(this.regexResults)
-      this.regexResults.forEach((x: any) => {
-      const amount = x.result[0].length;
-      const start = x.index;
-      
-      this.indexArray.push(this.getIndexes(start, amount))
-      
-    });
-    
+    this.matchTest(this.stringInput, this.regInput, this.flagInput)
+  }
+
+  matchTest(str: string, reg: string, flag: string) {
+    const matchedArray = [];
+    const test = new RegExp(reg, flag);
+    const match = str.match(test)[0].length;
+    const position = str.match(test).index;
+    for(let i = position; i <  position + match; i++) {
+      matchedArray.push(i)
+    }
+    this.regexMatched(matchedArray);
     
   }
 
-  getIndexes(start: number, amount: number) {
-    console.log('index check run')
-    const arr = [];
-    for (let i = start; i < (start + amount); i++) {
-      //console.log(i)
-      arr.push(i);
-    }
-  //  console.log(arr)
+  // this.outputArray[pos].style.backgroundColor = '#fff'
+  // this.outputArray[pos].style.color = '#000'
+  regexMatched(arr) {
+   
+    const charArray = new Array(this.stringInput.length).fill(0).map((x, i) => x = i)
+    charArray.forEach(pos => {
+      if(arr.includes(pos)) {
+        this.outputArray[pos].style.backgroundColor = '#900C3F';
+        this.outputArray[pos].style.color = '#fff';
+      }else{
+        this.outputArray[pos].style.backgroundColor = '#fff'
+        this.outputArray[pos].style.color = '#000' 
+      }
+    })
+      
+   
   }
+
+  
 }
