@@ -52,21 +52,18 @@ $primary: var(--ion-color-primary);
 
 .output-area {
   width: 100%;
-  min-height: 35vh;
+  min-height: 100px;
   border-radius: 4px;
-  margin-bottom: 3vh;
   border: solid 1px rgb(214, 214, 214);
   padding: 10px;
   box-sizing: border-box;
-  font-family: 'Coda', cursive;
-  font-size:20px;
+  font-family: "Coda", cursive;
+  font-size: 20px;
 
- .char {
-   padding:0 1px;
- }
+  .char {
+    padding: 0 1px;
+  }
 }
-
-
 
 .string-input {
   width: 100%;
@@ -87,7 +84,7 @@ $primary: var(--ion-color-primary);
   box-sizing: border-box;
   font-size: 30px;
   color: $primary;
-  font-family: 'Coda', cursive;
+  font-family: "Coda", cursive;
 }
 
 ::placeholder {
@@ -95,11 +92,19 @@ $primary: var(--ion-color-primary);
 }
 
 .arrow {
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   .i {
     color: $primary;
-    font-size:20px;
+    font-size: 20px;
+  }
+}
+
+@for $i from 1 through 200 {
+  @media (min-height: 500px + $i + 0px) {
+    .output-area {
+      min-height: 100px + $i + 0px;
+    }
   }
 }

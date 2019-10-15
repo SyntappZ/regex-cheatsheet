@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid fixed>
+  <ion-grid fixed class="app-grid">
     <!-- regex input -->
     <ion-row>
       <ion-col size="9">
@@ -27,9 +27,9 @@
         </ion-row>
       </ion-col>
 
-       <!-- flags -->
+      <!-- flags -->
 
-   <ion-col size="3">
+      <ion-col size="3">
         <ion-item>
           <ion-label position="floating">flags</ion-label>
           <ion-input
@@ -59,18 +59,9 @@
       </ion-col>
     </ion-row>
 
-   <!-- output -->
-    <ion-row>
-      <ion-col>
-        <div class="output-area">
-          <span class="char" *ngFor="let char of chars">{{ char }}</span>
-        </div>
-      </ion-col>
-    </ion-row>
+    <!-- testing string -->
 
-     <!-- testing string -->
-
-     <ion-row>
+    <ion-row *ngIf="onMatch; else isOnReplace">
       <ion-col size="9">
         <input
           (keyup)="stringTyped()"
@@ -81,8 +72,58 @@
           [(ngModel)]="stringInput"
         />
       </ion-col>
+
       <ion-col size="3">
         <div class="matched">{{ matchedAmount }}</div>
+      </ion-col>
+    </ion-row>
+    <ng-template #isOnReplace>
+      <ion-row>
+        <ion-col size="6">
+          <input
+            (keyup)="stringTyped()"
+            autocapitalize="none"
+            placeholder="Testing String"
+            type="text"
+            class="string-input"
+            [(ngModel)]="stringInput"
+          />
+        </ion-col>
+
+        <ion-col size="6">
+          <input
+          (keyup)="checkRegex()"
+            autocapitalize="none"
+            placeholder="Replace String"
+            type="text"
+            class="string-input"
+            [(ngModel)]="replaceWith"
+          />
+        </ion-col>
+      </ion-row>
+    </ng-template>
+
+    <!-- regex type -->
+
+    <ion-row>
+      <ion-col>
+        <ion-segment (ionChange)="segmentChanged($event)">
+          <ion-segment-button value="match" checked>
+            <ion-label>Match</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="replace">
+            <ion-label>Replace</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+
+    <!-- output -->
+    <ion-row class="ion-align-items-center">
+      <ion-col>
+        <div class="output-area">
+          <span class="char" *ngFor="let char of chars">{{ char }}</span>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
