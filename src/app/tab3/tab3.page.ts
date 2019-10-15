@@ -6,6 +6,19 @@ import { Component } from "@angular/core";
   styleUrls: ["tab3.page.scss"]
 })
 export class Tab3Page {
+  stringInput: string;
+  regInput: string;
+  flagInput: string;
+  replaceWith: string;
+  match: any;
+  chars: object = [];
+  matchedAmount: number = 0;
+  cursorPosition: number;
+  regexType: string = "match";
+  onReplace: boolean = false;
+  onMatch: boolean = true;
+  indexArray = [];
+  outputArray = <HTMLElement>(<unknown>document.getElementsByClassName("char"));
   symbols: object = [
     ".",
     "+",
@@ -26,19 +39,6 @@ export class Tab3Page {
     ")"
   ];
   constructor() {}
-  stringInput: string;
-  regInput: string;
-  flagInput: string;
-  replaceWith: string;
-  match: any;
-  chars: object = [];
-  matchedAmount: number = 0;
-  cursorPosition: number;
-  regexType: string = "match";
-  onReplace: boolean = false;
-  onMatch: boolean = true;
-  indexArray = [];
-  outputArray = <HTMLElement>(<unknown>document.getElementsByClassName("char"));
 
   symbolClicked(symbol: string) {
     if (this.regInput === undefined) {
@@ -108,7 +108,6 @@ export class Tab3Page {
   checkRegex() {
     if (this.onMatch) {
       let global: boolean = false;
-      
 
       if (this.flagInput !== undefined) {
         global = this.flagInput.split("").includes("g");
@@ -131,16 +130,12 @@ export class Tab3Page {
   replaceRegex(str: string, reg: string, flag: string, replaceWith: string) {
     let replacing: RegExp = new RegExp(reg, flag);
 
-    let jeff = str.replace(replacing, replaceWith)
-    if(reg.length > 0) {
-    this.chars = jeff.split('')
-
-    }else{
-      this.chars = str.split('')
+    let jeff = str.replace(replacing, replaceWith);
+    if (reg.length > 0) {
+      this.chars = jeff.split("");
+    } else {
+      this.chars = str.split("");
     }
-  
-   
-
   }
   matchTest(str: string, reg: string, flag: string) {
     const matchedArray = [];

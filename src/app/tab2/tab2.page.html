@@ -7,57 +7,69 @@
 </ion-header>
 
 <ion-content>
-    <ion-item-group>
-        <ion-item-divider>
-          <ion-label>RegEx</ion-label>
-        </ion-item-divider>
-      
-          <div class="reg-wrap" *ngFor="let reg of mainReg" (click)="getFullInfo(reg, 'regex')">
-              <div class="symbol" >{{ reg.symbol }}</div>
-              <div class="snippet">{{ reg.snippet }}</div>
-              <div class="details">
-                <!-- icon -->
-                <ion-icon color="primary" class="red-arrow" name="arrow-dropright"></ion-icon>
-              </div>
-          </div>
-     
-       
-      </ion-item-group>
+  <ion-item-group>
+    <ion-item-divider>
+      <ion-label>RegEx</ion-label>
+    </ion-item-divider>
 
-      <ion-item-group>
-          <ion-item-divider>
-            <ion-label>Methods</ion-label>
-          </ion-item-divider>
+    <div
+      class="reg-wrap"
+      *ngFor="let reg of mainReg"
+      (click)="getFullInfo(reg, 'regex')"
+    >
+      <div class="symbol">{{ reg.symbol }}</div>
+      <div class="snippet">{{ reg.snippet }}</div>
+      <div class="details">
+        <ion-icon
+          color="primary"
+          class="red-arrow"
+          name="arrow-dropright"
+        ></ion-icon>
+      </div>
+    </div>
+  </ion-item-group>
 
-          <div class="reg-wrap" *ngFor="let method of regMethods"  (click)="getFullInfo(method, 'methods')">
-            <div class="symbol" >{{ method.symbol }}</div>
-            <div class="snippet">{{ method.snippet }}</div>
-            <div class="details">
-              <!-- icon -->
-              <ion-icon color="primary" class="red-arrow" name="arrow-dropright"></ion-icon>
-            </div>
-        </div>
-          
-        </ion-item-group>
+  <ion-item-group>
+    <ion-item-divider>
+      <ion-label>Methods</ion-label>
+    </ion-item-divider>
 
-        <ion-item-group>
-            <ion-item-divider>
-              <ion-label>Flags</ion-label>
-            </ion-item-divider>
+    <div
+      class="reg-wrap"
+      *ngFor="let method of regMethods"
+      (click)="getFullInfo(method, 'methods')"
+    >
+      <div class="symbol">{{ method.symbol }}</div>
+      <div class="snippet">{{ method.snippet }}</div>
+      <div class="details">
+        <ion-icon
+          color="primary"
+          class="red-arrow"
+          name="arrow-dropright"
+        ></ion-icon>
+      </div>
+    </div>
+  </ion-item-group>
 
-            <div class="reg-wrap" *ngFor="let flag of flags"  (click)="getFullInfo(flag, 'flags')">
-              <div class="symbol" >{{ flag.symbol }}</div>
-              <div class="snippet">{{ flag.snippet }}</div>
-              <div class="details">
-                <!-- icon -->
-                <ion-icon color="primary" class="red-arrow" name="arrow-dropright"></ion-icon>
-             </div>
-            </div>
+  <ion-item-group>
+    <ion-item-divider>
+      <ion-label>Flags</ion-label>
+    </ion-item-divider>
 
-          
-           
-            
-          </ion-item-group>
- 
- 
+    <div
+      class="reg-wrap"
+      *ngFor="let flag of flags"
+      (click)="getFullInfo(flag, 'flags')"
+    >
+      <div class="symbol">{{ flag.symbol }}</div>
+      <div class="snippet">{{ flag.snippet }}</div>
+      <div class="details">
+        <ion-icon
+          color="primary"
+          class="red-arrow"
+          name="arrow-dropright"
+        ></ion-icon>
+      </div>
+    </div>
+  </ion-item-group>
 </ion-content>
