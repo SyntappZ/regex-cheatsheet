@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ElementRef, ViewChild } from "@angular/core";
 
 @Component({
   selector: "app-tab3",
@@ -13,12 +13,13 @@ export class Tab3Page {
   match: any;
   chars: object = [];
   matchedAmount: number = 0;
-  cursorPosition: number;
   regexType: string = "match";
   onReplace: boolean = false;
   onMatch: boolean = true;
   indexArray = [];
+  cursorPosition: number = 0;
   outputArray = <HTMLElement>(<unknown>document.getElementsByClassName("char"));
+  
   symbols: object = [
     ".",
     "+",
@@ -40,7 +41,22 @@ export class Tab3Page {
   ];
   constructor() {}
 
+
+  @ViewChild('inputRef', {static: false}) inputRef: ElementRef
+ 
+  resetPosition() {
+    this.cursorPosition = 0;
+  }
+  
   symbolClicked(symbol: string) {
+    
+    
+    if(this.cursorPosition === 0) {
+      this.cursorPosition = this.inputRef.nativeElement.selectionStart;
+    }
+
+    
+
     if (this.regInput === undefined) {
       this.regInput = symbol;
     } else {
@@ -81,21 +97,23 @@ export class Tab3Page {
   }
 
   stringTyped() {
+    this.cursorPosition = 0
     this.chars = this.stringInput.split("");
 
     if (this.regInput !== undefined) {
       this.checkRegex();
     }
   }
-  getCusorPostion(e) {
-    if (e.key === undefined) {
-      this.cursorPosition = e.target.selectionStart;
-    } else {
-      this.cursorPosition = e.target.selectionStart;
-    }
-  }
+  
 
   segmentChanged(e) {
+    this.cursorPosition = 0
+    this.regInput = "";
+    this.chars = [];
+    this.flagInput = "";
+    this.stringInput = "";
+    this.matchedAmount = 0;
+    this.replaceWith = "";
     if (e.detail.value == "match") {
       this.onMatch = true;
       this.onReplace = false;
