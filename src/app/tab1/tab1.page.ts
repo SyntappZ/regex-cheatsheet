@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { ModalController } from "@ionic/angular";
 import { ModalPage } from "../modal/modal.page";
-import { Paragraph } from "../paragraph";
+
 
 @Component({
   selector: "app-tab1",
