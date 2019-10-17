@@ -13,7 +13,7 @@ export class Tab2Page {
   flags = FLAGS;
 
   constructor(private modelController: ModalController) {}
-  async getFullInfo(data: { paragraph: any; symbol: any; }, title: any) {
+  async getFullInfo(data: { paragraph: any; symbol: any }, title: any) {
     const paragraph = data.paragraph;
 
     const modal = await this.modelController.create({

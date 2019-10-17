@@ -19,7 +19,7 @@ export class Tab3Page {
   indexArray = [];
   cursorPosition: number = 0;
   outputArray = <HTMLElement>(<unknown>document.getElementsByClassName("char"));
-  
+
   symbols: object = [
     ".",
     "+",
@@ -41,21 +41,16 @@ export class Tab3Page {
   ];
   constructor() {}
 
+  @ViewChild("inputRef", { static: false }) inputRef: ElementRef;
 
-  @ViewChild('inputRef', {static: false}) inputRef: ElementRef
- 
   resetPosition() {
     this.cursorPosition = 0;
   }
-  
+
   symbolClicked(symbol: string) {
-    
-    
-    if(this.cursorPosition === 0) {
+    if (this.cursorPosition === 0) {
       this.cursorPosition = this.inputRef.nativeElement.selectionStart;
     }
-
-    
 
     if (this.regInput === undefined) {
       this.regInput = symbol;
@@ -97,17 +92,14 @@ export class Tab3Page {
   }
 
   stringTyped() {
-    this.cursorPosition = 0
     this.chars = this.stringInput.split("");
 
     if (this.regInput !== undefined) {
       this.checkRegex();
     }
   }
-  
 
   segmentChanged(e) {
-    this.cursorPosition = 0
     this.regInput = "";
     this.chars = [];
     this.flagInput = "";
