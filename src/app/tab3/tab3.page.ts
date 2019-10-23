@@ -11,14 +11,15 @@ export class Tab3Page {
   flagInput: string;
   replaceWith: string;
   match: any;
-  chars: object = [];
+  chars: any = [];
   matchedAmount: number = 0;
   regexType: string = "match";
   onReplace: boolean = false;
   onMatch: boolean = true;
   indexArray = [];
   cursorPosition: number = 0;
-  outputArray = <HTMLElement>(<unknown>document.getElementsByClassName("char"));
+  //outputArray  = <HTMLElement>(<unknown>document.getElementsByClassName("char"));
+  outputArray = document.getElementsByClassName("char");
 
   symbols: object = [
     ".",
@@ -94,9 +95,7 @@ export class Tab3Page {
   stringTyped() {
     this.chars = this.stringInput.split("");
 
-    if (this.regInput !== undefined) {
-      this.checkRegex();
-    }
+    this.checkRegex();
   }
 
   segmentChanged(e) {
@@ -136,13 +135,16 @@ export class Tab3Page {
       );
     }
   }
+  test() {
+    console.log(this.outputArray);
+  }
 
   replaceRegex(str: string, reg: string, flag: string, replaceWith: string) {
     let replacing: RegExp = new RegExp(reg, flag);
 
-    let jeff = str.replace(replacing, replaceWith);
+    let rep = str.replace(replacing, replaceWith);
     if (reg.length > 0) {
-      this.chars = jeff.split("");
+      this.chars = rep.split("");
     } else {
       this.chars = str.split("");
     }
@@ -166,20 +168,19 @@ export class Tab3Page {
   }
 
   regexMatched(arr: any[]) {
-    if (this.stringInput !== undefined && this.stringInput.length > 0) {
-      const charArray = new Array(this.stringInput.length)
-        .fill(0)
-        .map((x, i) => (x = i));
-
-      charArray.forEach(pos => {
-        if (arr.includes(pos) && this.regInput.length > 0) {
-          this.outputArray[pos].style.backgroundColor = "#900C3F";
-          this.outputArray[pos].style.color = "#fff";
+    setTimeout(() => {
+      let eArr = this.outputArray[Symbol.iterator]();
+      let i = 0;
+      for (let elem of eArr) {
+        if (arr.includes(i)) {
+          elem.style.backgroundColor = "#900C3F";
+          elem.style.color = "#fff";
         } else {
-          this.outputArray[pos].style.backgroundColor = "#fff";
-          this.outputArray[pos].style.color = "#000";
+          elem.style.backgroundColor = "#fff";
+          elem.style.color = "#000";
         }
-      });
-    }
+        i++;
+      }
+    }, 100);
   }
 }
