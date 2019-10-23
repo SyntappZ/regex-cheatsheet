@@ -57,7 +57,7 @@ $primary: var(--ion-color-primary);
   border: solid 1px rgb(214, 214, 214);
   padding: 10px;
   box-sizing: border-box;
-  font-family: "Coda", cursive;
+  font-family: "Coda", cursive, Arial, Helvetica, sans-serif;
   font-size: 20px;
 
   .char {
@@ -84,7 +84,7 @@ $primary: var(--ion-color-primary);
   box-sizing: border-box;
   font-size: 30px;
   color: $primary;
-  font-family: "Coda", cursive;
+  font-family: "Coda", cursive, Arial, Helvetica, sans-serif;
 }
 
 ::placeholder {

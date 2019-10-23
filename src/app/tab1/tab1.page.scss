@@ -11,13 +11,13 @@ $secondary: var(--ion-color-secondary);
   align-items: center;
   flex-direction: column;
   height: 50vh;
-  font-family: "Coda", cursive;
+  font-family: "Coda", cursive, Arial, Helvetica, sans-serif;
   letter-spacing: 1px;
   background: $primary;
   color: white;
 
   .title {
-    font-family: "Rock Salt", cursive;
+    font-family: "Rock Salt", cursive, Arial, Helvetica, sans-serif;
     text-align: center;
     color: white;
   }

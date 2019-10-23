@@ -24,8 +24,14 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
-@import url("https://fonts.googleapis.com/css?family=Coda|Rock+Salt&display=swap");
-
+@font-face {
+  font-family: 'Rock Salt';
+  src: url(./assets/fonts/Rock_Salt/RockSalt-Regular.ttf)
+}
+@font-face {
+  font-family: 'Coda';
+  src: url(./assets/fonts/Coda/Coda-Regular.ttf)
+}
 .toolbar-title {
   text-align: center;
   font-family: "Rock Salt", Courier, monospace;
