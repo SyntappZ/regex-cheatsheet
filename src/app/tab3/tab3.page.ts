@@ -45,10 +45,13 @@ export class Tab3Page {
   @ViewChild("inputRef", { static: false }) inputRef: ElementRef;
 
   resetPosition() {
-    this.cursorPosition = 0;
+   this.cursorPosition = 0;
   }
 
   symbolClicked(symbol: string) {
+   // console.log(this.inputRef)
+  //this.inputRef.nativeElement.focus()
+
     if (this.cursorPosition === 0) {
       this.cursorPosition = this.inputRef.nativeElement.selectionStart;
     }
@@ -66,6 +69,7 @@ export class Tab3Page {
       this.cursorPosition += 1;
     }
     this.checkRegex();
+
   }
 
   flagTyped() {
