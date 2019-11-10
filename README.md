@@ -1,4 +1,3 @@
 # regex-cheatsheet
 
-
-android app for learning regex with infomation and tester. 
+More information and images on the playstore => https://play.google.com/store/apps/details?id=io.syntappz.regex&gl=GB
