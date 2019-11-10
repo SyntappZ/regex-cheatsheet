@@ -15,9 +15,9 @@
           <ion-col class="edge" size="1">/</ion-col>
           <ion-col size="10">
             <input
-            for="symbol"
+             id="regInput"
               (keyup)="checkRegex()"
-              (keydown)="test()"
+              (keydown)="test($event)"
               autocapitalize="none"
               #inputRef
               class="reg-input"
@@ -51,10 +51,12 @@
         <div class="quick-access">
           <div
             id="symbol"
+            
             class="symbol"
             *ngFor="let symbol of symbols"
             (click)="symbolClicked(symbol)"
           >
+          
             {{ symbol }}
           </div>
         </div>
@@ -70,7 +72,7 @@
       <ion-col size="9">
         <input
           (keyup)="stringTyped()"
-          (click)="checkRegex()"
+          
           autocapitalize="none"
           placeholder="Testing String"
           type="text"
@@ -80,7 +82,7 @@
       </ion-col>
 
       <ion-col size="3">
-        <div class="matched" (click)="testingFuction()">{{ matchedAmount }}</div>
+        <div class="matched" (click)="testingFunction()">{{ matchedAmount }}</div>
       </ion-col>
     </ion-row>
     <ng-template #isOnReplace>
@@ -109,7 +111,7 @@
       </ion-row>
     </ng-template>
 
-    <!-- regex type -->
+    <!-- segment change -->
 
     <ion-row>
       <ion-col>
