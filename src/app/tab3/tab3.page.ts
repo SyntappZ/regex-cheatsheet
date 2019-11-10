@@ -18,8 +18,9 @@ export class Tab3Page {
   onMatch: boolean = true;
   onFlag: boolean = false;
   indexArray = [];
-  cursorPosition: number = 0;
+  caretPosition: number = 0;
   outputArray = document.getElementsByClassName("char");
+  symbolsPressed:number = 0;
 
   symbols: object = [
     ".",
@@ -44,32 +45,55 @@ export class Tab3Page {
 
   @ViewChild("inputRef", { static: false }) inputRef: ElementRef;
 
-  resetPosition() {
-   this.cursorPosition = 0;
-  }
-
   symbolClicked(symbol: string) {
-   // console.log(this.inputRef)
-  //this.inputRef.nativeElement.focus()
+    // this.symbolsPressed++
+    this.caretPosition = this.inputRef.nativeElement.selectionStart;
 
-    if (this.cursorPosition === 0) {
-      this.cursorPosition = this.inputRef.nativeElement.selectionStart;
-    }
-
+    let pos = this.caretPosition;
+    this.inputRef.nativeElement.focus()
+    this.inputRef.nativeElement.setSelectionRange(pos, pos);
     if (this.regInput === undefined) {
       this.regInput = symbol;
     } else {
-      let start = this.regInput.substring(0, this.cursorPosition);
-      let end = this.regInput.substring(
-        this.cursorPosition,
-        this.regInput.length
-      );
-      this.regInput = start + symbol + end;
-
-      this.cursorPosition += 1;
+      const arr = this.regInput.split("");
+      arr.splice(this.caretPosition, 0, symbol);
+      this.regInput = arr.join("");
+      
+     setTimeout(() => {
+      this.setCaretPosition(this.inputRef.nativeElement, this.caretPosition + 1);
+      
+     }, 1);
+     
     }
     this.checkRegex();
+  }
 
+  testingFunction() {
+    
+
+  }
+
+  test() {
+    //alert('focus pressed')
+  }
+
+  setCaretPosition(ctrl, pos) {
+    
+    
+    // Modern browsers
+    if (ctrl.setSelectionRange) {
+      ctrl.focus();
+      ctrl.setSelectionRange(pos, pos);
+
+      // IE8 and below
+     } 
+     else if (ctrl.createTextRange) {
+      var range = ctrl.createTextRange();
+      range.collapse(true);
+      range.moveEnd("character", pos);
+      range.moveStart("character", pos);
+      range.select();
+    }
   }
 
   flagTyped() {
@@ -176,7 +200,7 @@ export class Tab3Page {
     });
 
     this.matchedAmount = beginAndEnd.length;
-    setTimeout(() => {}, 50);
+
     this.regexMatched(matchedArray);
   }
 

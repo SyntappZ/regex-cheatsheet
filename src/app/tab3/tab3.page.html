@@ -17,7 +17,7 @@
             <input
             for="symbol"
               (keyup)="checkRegex()"
-              (click)="resetPosition()"
+              (keydown)="test()"
               autocapitalize="none"
               #inputRef
               class="reg-input"
@@ -80,7 +80,7 @@
       </ion-col>
 
       <ion-col size="3">
-        <div class="matched">{{ matchedAmount }}</div>
+        <div class="matched" (click)="testingFuction()">{{ matchedAmount }}</div>
       </ion-col>
     </ion-row>
     <ng-template #isOnReplace>
