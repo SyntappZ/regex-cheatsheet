@@ -51,7 +51,7 @@ export class Tab3Page {
    // this.inputRef.nativeElement.focus();
     this.caretPosition = this.inputRef.nativeElement.selectionStart;
     // alert(this.caretPosition)
-    if (this.regInput === undefined) {
+    if (!this.regInput) {
       this.regInput = symbol;
     } else {
       const arr = this.regInput.split("");
@@ -75,11 +75,12 @@ export class Tab3Page {
   }
 
   removeHighlight() {
+    console.log('REMOVE H')
     let characterArray = document.querySelectorAll(".char")[Symbol.iterator]();
     for (let elem of characterArray) {
       elem.style.backgroundColor = "#fff";
       elem.style.color = "#000"; 
-  }
+   }
   }
 
   setCaretPosition(ctrl, pos) {
@@ -108,7 +109,6 @@ export class Tab3Page {
   stringTyped() {
     this.chars = this.stringInput.split("");
     setTimeout(() => {
-      this.removeHighlight()
       this.checkRegex();
     }, 1);
   }
@@ -124,6 +124,7 @@ export class Tab3Page {
       if (this.replaceWith === undefined) {
         this.replaceWith = "";
       }
+      this.removeHighlight()
       this.checkRegex()
     }
   }
