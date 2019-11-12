@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from "@angular/core";
 
+
 @Component({
   selector: "app-tab3",
   templateUrl: "tab3.page.html",
@@ -18,8 +19,9 @@ export class Tab3Page {
   onMatch: boolean = true;
   onFlag: boolean = false;
   indexArray = [];
-  cursorPosition: number = 0;
-  outputArray = document.getElementsByClassName("char");
+  caretPosition: number = 0;
+  outputArray = [];
+  symbolsPressed: number = 0;
 
   symbols: object = [
     ".",
@@ -44,43 +46,69 @@ export class Tab3Page {
 
   @ViewChild("inputRef", { static: false }) inputRef: ElementRef;
 
-  resetPosition() {
-   this.cursorPosition = 0;
-  }
-
   symbolClicked(symbol: string) {
-   // console.log(this.inputRef)
-  //this.inputRef.nativeElement.focus()
-
-    if (this.cursorPosition === 0) {
-      this.cursorPosition = this.inputRef.nativeElement.selectionStart;
-    }
-
-    if (this.regInput === undefined) {
+  
+    this.caretPosition = this.inputRef.nativeElement.selectionStart;
+    
+    if (!this.regInput) {
       this.regInput = symbol;
     } else {
-      let start = this.regInput.substring(0, this.cursorPosition);
-      let end = this.regInput.substring(
-        this.cursorPosition,
-        this.regInput.length
-      );
-      this.regInput = start + symbol + end;
-
-      this.cursorPosition += 1;
+      const arr = this.regInput.split("");
+      arr.splice(this.caretPosition, 0, symbol);
+      this.regInput = arr.join("");
     }
-    this.checkRegex();
+    setTimeout(() => {
+      this.setCaretPosition(
+        this.inputRef.nativeElement,
+        this.caretPosition + 1
+      );
+    }, 1);
+    
+  }
 
+  testingFunction() {}
+
+  test(e) {
+    
+   
+  }
+
+  removeHighlight() {
+    let characterArray = document.querySelectorAll(".char")[Symbol.iterator]();
+    for (let elem of characterArray) {
+      elem.style.backgroundColor = "#fff";
+      elem.style.color = "#000"; 
+   }
+  }
+
+  setCaretPosition(ctrl, pos) {
+   
+    // Modern browsers
+    if (ctrl.setSelectionRange) {
+      ctrl.focus();
+      ctrl.setSelectionRange(pos, pos);
+
+      // IE8 and below
+    } else if (ctrl.createTextRange) {
+      var range = ctrl.createTextRange();
+      range.collapse(true);
+      range.moveEnd("character", pos);
+      range.moveStart("character", pos);
+      range.select();
+    }
   }
 
   flagTyped() {
     setTimeout(() => {
       this.checkRegex();
-    }, 20);
+    }, 1);
   }
 
   stringTyped() {
     this.chars = this.stringInput.split("");
-    this.checkRegex();
+    setTimeout(() => {
+      this.checkRegex();
+    }, 1);
   }
 
   segmentChanged(e) {
@@ -91,32 +119,38 @@ export class Tab3Page {
     } else {
       this.onMatch = false;
       this.onReplace = true;
-      let eArr = this.outputArray[Symbol.iterator]();
       if (this.replaceWith === undefined) {
         this.replaceWith = "";
       }
-      setTimeout(() => {
-        for (let elem of eArr) {
-          elem.style.backgroundColor = "#fff";
-          elem.style.color = "#000";
-        }
-      }, 20);
+      this.removeHighlight()
+      this.checkRegex()
     }
-    this.checkRegex();
   }
 
   checkRegex() {
+    
+
     if (this.onMatch) {
       let global: boolean = false;
 
       if (this.flagInput !== undefined) {
-        global = this.flagInput.split("").includes("g");
+        global = this.flagInput.includes("g");
       }
 
-      if (global && this.stringInput.length > 0) {
-        this.globalMatchTest(this.stringInput, this.regInput, this.flagInput);
+      if (global && this.stringInput) {
+        this.globalMatchTest(
+          this.stringInput,
+          this.regInput,
+          this.flagInput,
+          this.characterHighlighter
+        );
       } else {
-        this.matchTest(this.stringInput, this.regInput, this.flagInput);
+        this.matchTest(
+          this.stringInput,
+          this.regInput,
+          this.flagInput,
+          this.characterHighlighter
+        );
       }
     } else {
       this.replaceRegex(
@@ -131,14 +165,16 @@ export class Tab3Page {
   replaceRegex(str: string, reg: string, flag: string, replaceWith: string) {
     let replacing: RegExp = new RegExp(reg, flag);
     let rep = str.replace(replacing, replaceWith);
+
     if (reg.length > 0) {
       this.chars = rep.split("");
     } else {
       this.chars = str.split("");
     }
+ 
   }
 
-  matchTest(str: string, reg: string, flag: string) {
+  matchTest(str: string, reg: string, flag: string, callback) {
     const matchedArray = [];
     let bracketTest = /\[(?!.*\])/.test(reg);
     if (!bracketTest) {
@@ -153,10 +189,10 @@ export class Tab3Page {
     }
 
     this.matchedAmount = matchedArray.length;
-    this.regexMatched(matchedArray);
+    callback(matchedArray);
   }
 
-  globalMatchTest(str: string, reg: string, flag: string) {
+  globalMatchTest(str: string, reg: string, flag: string, callback) {
     let matchedArray = [];
     let beginAndEnd = [];
     let bracketTest = /\[(?!.*\])/.test(reg);
@@ -176,24 +212,22 @@ export class Tab3Page {
     });
 
     this.matchedAmount = beginAndEnd.length;
-    setTimeout(() => {}, 50);
-    this.regexMatched(matchedArray);
+    callback(matchedArray);
   }
 
-  regexMatched(arr: any[]) {
-    let eArr = this.outputArray[Symbol.iterator]();
+  characterHighlighter(arr: any[]) {
+    let characterArray = document.querySelectorAll(".char")[Symbol.iterator]();
+
     let i = 0;
-    setTimeout(() => {
-      for (let elem of eArr) {
-        if (arr.includes(i)) {
-          elem.style.backgroundColor = "#900C3F";
-          elem.style.color = "#fff";
-        } else {
-          elem.style.backgroundColor = "#fff";
-          elem.style.color = "#000";
-        }
-        i++;
+    for (let elem of characterArray) {
+      if (arr.includes(i)) {
+        elem.style.backgroundColor = "#900C3F";
+        elem.style.color = "#fff";
+      } else {
+        elem.style.backgroundColor = "#fff";
+        elem.style.color = "#000";
       }
-    }, 20);
+      i++;
+    }
   }
 }
