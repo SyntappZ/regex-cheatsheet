@@ -48,7 +48,7 @@ export class Tab3Page {
   @ViewChild("inputRef", { static: false }) inputRef: ElementRef;
 
   symbolClicked(symbol: string) {
-    this.inputRef.nativeElement.focus();
+   // this.inputRef.nativeElement.focus();
     this.caretPosition = this.inputRef.nativeElement.selectionStart;
     // alert(this.caretPosition)
     if (this.regInput === undefined) {
@@ -58,20 +58,12 @@ export class Tab3Page {
       arr.splice(this.caretPosition, 0, symbol);
       this.regInput = arr.join("");
     }
-    // setTimeout(() => {
-    //   this.setCaretPosition(
-    //     this.inputRef.nativeElement,
-    //     this.caretPosition + 1
-    //   );
-    // }, 1);
-    
-    // setTimeout(() => {
-    // callback(this.inputRef.nativeElement, this.caretPosition + 1)
-    // //this.checkRegex();
-    // }, .1);
-    
-    
-
+    setTimeout(() => {
+      this.setCaretPosition(
+        this.inputRef.nativeElement,
+        this.caretPosition + 1
+      );
+    }, 1);
     
   }
 
@@ -80,6 +72,14 @@ export class Tab3Page {
   test(e) {
     
    
+  }
+
+  removeHighlight() {
+    let characterArray = document.querySelectorAll(".char")[Symbol.iterator]();
+    for (let elem of characterArray) {
+      elem.style.backgroundColor = "#fff";
+      elem.style.color = "#000"; 
+  }
   }
 
   setCaretPosition(ctrl, pos) {
@@ -108,6 +108,7 @@ export class Tab3Page {
   stringTyped() {
     this.chars = this.stringInput.split("");
     setTimeout(() => {
+      this.removeHighlight()
       this.checkRegex();
     }, 1);
   }
@@ -171,7 +172,7 @@ export class Tab3Page {
     } else {
       this.chars = str.split("");
     }
-    console.log(this.chars)
+ 
   }
 
   matchTest(str: string, reg: string, flag: string, callback) {
