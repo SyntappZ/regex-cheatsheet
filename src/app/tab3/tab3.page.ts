@@ -1,6 +1,5 @@
 import { Component, ElementRef, ViewChild } from "@angular/core";
-import { resolve } from "url";
-import { reject } from "q";
+
 
 @Component({
   selector: "app-tab3",
@@ -48,9 +47,9 @@ export class Tab3Page {
   @ViewChild("inputRef", { static: false }) inputRef: ElementRef;
 
   symbolClicked(symbol: string) {
-   // this.inputRef.nativeElement.focus();
+  
     this.caretPosition = this.inputRef.nativeElement.selectionStart;
-    // alert(this.caretPosition)
+    
     if (!this.regInput) {
       this.regInput = symbol;
     } else {
@@ -75,7 +74,6 @@ export class Tab3Page {
   }
 
   removeHighlight() {
-    console.log('REMOVE H')
     let characterArray = document.querySelectorAll(".char")[Symbol.iterator]();
     for (let elem of characterArray) {
       elem.style.backgroundColor = "#fff";
