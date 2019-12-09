@@ -63,7 +63,7 @@ export class Tab3Page {
         this.caretPosition + 1
       );
     }, 1);
-    
+    this.checkRegex()
   }
 
   testingFunction() {}
@@ -163,6 +163,7 @@ export class Tab3Page {
   }
 
   replaceRegex(str: string, reg: string, flag: string, replaceWith: string) {
+    
     let replacing: RegExp = new RegExp(reg, flag);
     let rep = str.replace(replacing, replaceWith);
 
@@ -175,6 +176,7 @@ export class Tab3Page {
   }
 
   matchTest(str: string, reg: string, flag: string, callback) {
+ 
     const matchedArray = [];
     let bracketTest = /\[(?!.*\])/.test(reg);
     if (!bracketTest) {
