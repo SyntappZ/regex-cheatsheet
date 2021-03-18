@@ -1,6 +1,6 @@
 # regex-cheatsheet
 
-## This is the old app react native upgraded version github is private. 
+## This is the old app, react native upgraded version github is private. 
 
 More information and images on google playstore => https://play.google.com/store/apps/details?id=io.syntappz.regex&gl=GB
 
